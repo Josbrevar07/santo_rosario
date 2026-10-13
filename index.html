@@ -1,0 +1,1060 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Santo Rosario - Edición Completa con oraciones y plegarias.</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      body {
+        background-color: #f4f7f6;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      .navbar {
+        background-color: #004d80;
+      }
+      .navbar-brand,
+      .nav-link {
+        color: #fff !important;
+      }
+      .nav-link.active {
+        font-weight: bold;
+        border-bottom: 2px solid #ffd700;
+      }
+
+      .hero-section {
+        background: linear-gradient(135deg, #004d80 0%, #0073e6 100%);
+        color: white;
+        padding: 30px 0;
+        border-radius: 0 0 20px 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      /* ESTILOS DEL ROSARIO VISUAL */
+      .rosary-container {
+        background: #fff;
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      svg#rosary-svg {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        max-height: 55vh;
+        filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.1));
+      }
+
+      .bead {
+        transition: all 0.4s ease;
+      }
+      .bead-pending {
+        fill: #f0f0f0;
+        stroke: #b0b0b0;
+        stroke-width: 1.5;
+      }
+      .bead-large {
+        fill: #d4af37;
+        stroke: #b8860b;
+      }
+
+      .bead-active {
+        fill: #ffd700;
+        stroke: #fff;
+        stroke-width: 2;
+        filter: drop-shadow(0 0 10px #ffd700);
+        transform-origin: center;
+        transform: scale(1.3);
+      }
+      .bead-done {
+        fill: #004d80;
+        stroke: #002244;
+      }
+
+      /* Tarjeta de Oración */
+      .prayer-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        min-height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      #current-prayer-text {
+        font-size: 1.25rem;
+        font-style: italic;
+        color: #004d80;
+      }
+      .mystery-badge {
+        background-color: #ffd700;
+        color: #004d80;
+        font-weight: bold;
+        padding: 5px 15px;
+        border-radius: 20px;
+        margin-bottom: 15px;
+      }
+      .section-title {
+        color: #004d80;
+        border-bottom: 2px solid #ffd700;
+        display: inline-block;
+        padding-bottom: 5px;
+        margin-bottom: 20px;
+      }
+
+      /* Footer Josbrevar 07 */
+      .josbrevar-footer {
+        background-color: #004d80;
+        color: #ffd700;
+        margin-top: auto;
+        padding: 25px 0 15px 0;
+        border-radius: 20px 20px 0 0;
+      }
+      .social-icons a {
+        color: #ffd700 !important;
+        transition: transform 0.3s ease;
+        display: inline-block;
+      }
+      .social-icons a:hover {
+        transform: scale(1.2);
+        color: #fff !important;
+      }
+
+      @media (min-width: 768px) {
+        svg#rosary-svg {
+          max-height: 70vh;
+        }
+        .prayer-card {
+          min-height: 400px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navegación con Pestañas -->
+    <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#"
+          >📿 Rosario Digital Interactivo</a
+        >
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon" style="filter: invert(1)"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto" role="tablist">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                data-bs-toggle="tab"
+                href="#rosary"
+                role="tab"
+                >Rezar</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                data-bs-toggle="tab"
+                href="#mysteries-guide"
+                role="tab"
+                >Misterios</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                data-bs-toggle="tab"
+                href="#prayers-guide"
+                role="tab"
+                >Oraciones</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Contenedor Principal -->
+    <main class="container my-3 flex-grow-1 tab-content">
+      <!-- PESTAÑA 1: REZAR (Simulador Visual) -->
+      <div class="tab-pane fade show active" id="rosary" role="tabpanel">
+        <div class="text-center hero-section">
+          <h1 class="display-6 fw-bold">El Santo Rosario</h1>
+          <div id="status" class="mt-2 fw-light fs-5">
+            Preparando misterios...
+          </div>
+        </div>
+
+        <div class="row align-items-center">
+          <!-- COLUMNA IZQ: Visual -->
+          <div class="col-md-5 mb-4">
+            <div class="rosary-container">
+              <svg
+                id="rosary-svg"
+                viewBox="0 0 400 550"
+                xmlns="http://www.w3.org/2000/svg"
+              ></svg>
+            </div>
+          </div>
+
+          <!-- COLUMNA DER: Textos y Controles -->
+          <div class="col-md-7 mb-4">
+            <div class="prayer-card border border-light">
+              <div
+                id="prayer-badge"
+                class="mystery-badge shadow-sm"
+                style="display: none"
+              ></div>
+              <p id="current-prayer-text">
+                Selecciona una voz y presiona "Iniciar".
+              </p>
+              <p id="prayer-counter" class="text-muted small mt-3 fw-bold"></p>
+
+              <!-- Selector Inteligente de Voz -->
+              <div class="mt-3 mb-4 w-100" id="voiceSelectorContainer">
+                <label
+                  for="voiceSelect"
+                  class="form-label text-muted small fw-bold"
+                >
+                  <i class="fas fa-volume-up"></i> Selecciona el Lector
+                  (Recomendamos voces con ⭐):
+                </label>
+                <select
+                  id="voiceSelect"
+                  class="form-select shadow-sm mx-auto"
+                  style="max-width: 350px"
+                ></select>
+              </div>
+
+              <div class="mt-2">
+                <button
+                  onclick="startRosary()"
+                  id="startBtn"
+                  class="btn btn-primary btn-lg px-5 rounded-pill shadow"
+                  style="background-color: #004d80; border: none"
+                >
+                  Iniciar Rosario
+                </button>
+                <button
+                  onclick="stopRosary()"
+                  id="stopBtn"
+                  class="btn btn-danger btn-lg px-5 rounded-pill shadow"
+                  style="display: none"
+                >
+                  Detener
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="alert alert-info mt-3 text-center border-0 shadow-sm"
+              style="background-color: #e6f2ff; color: #004d80"
+            >
+              <i class="fas fa-mobile-alt me-2"></i>Incluye las oraciones y
+              plegarias del Santo Rosario.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PESTAÑA 2: MISTERIOS -->
+      <div class="tab-pane fade" id="mysteries-guide" role="tabpanel">
+        <h2 class="section-title mt-4">Los Misterios del Rosario</h2>
+        <div class="row g-4 mt-2 mb-5">
+          <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title text-primary fw-bold">
+                  Gozosos
+                  <small class="text-muted fw-normal">(Lunes y Sábado)</small>
+                </h5>
+                <ol>
+                  <li>La Encarnación del Hijo de Dios.</li>
+                  <li>
+                    La Visitación de Nuestra Señora a su prima Santa Isabel.
+                  </li>
+                  <li>El Nacimiento del Hijo de Dios en Belén.</li>
+                  <li>La Presentación del Señor Jesús en el templo.</li>
+                  <li>La Pérdida del Niño Jesús y su hallazgo en el templo.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title text-primary fw-bold">
+                  Dolorosos
+                  <small class="text-muted fw-normal">(Martes y Viernes)</small>
+                </h5>
+                <ol>
+                  <li>
+                    La Oración de Nuestro Señor en el Huerto de Los Olivos.
+                  </li>
+                  <li>La Flagelación del Señor.</li>
+                  <li>La Coronación de espinas de Jesús.</li>
+                  <li>El Camino de Jesús al Monte Calvario.</li>
+                  <li>La Crucifixión y Muerte de Nuestro Señor Jesús.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title text-primary fw-bold">
+                  Gloriosos
+                  <small class="text-muted fw-normal"
+                    >(Miércoles y Domingo)</small
+                  >
+                </h5>
+                <ol>
+                  <li>La Resurrección del Señor.</li>
+                  <li>La Ascensión del Señor.</li>
+                  <li>La Venida del Espíritu Santo.</li>
+                  <li>
+                    La Asunción de Nuestra Señora La Virgen María a los Cielos.
+                  </li>
+                  <li>La Coronación de la Santísima Virgen.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title text-primary fw-bold">
+                  Luminosos <small class="text-muted fw-normal">(Jueves)</small>
+                </h5>
+                <ol>
+                  <li>El Bautismo de Jesús en el Río Jordán.</li>
+                  <li>
+                    Las bodas de Caná y Jesús hace su primer milagro público.
+                  </li>
+                  <li>El anuncio del Reino de Dios.</li>
+                  <li>La Transfiguración de Jesús en el Monte.</li>
+                  <li>La Institución de la Eucaristía.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PESTAÑA 3: ORACIONES -->
+      <div class="tab-pane fade" id="prayers-guide" role="tabpanel">
+        <h2 class="section-title mt-4">Oraciones Católicas</h2>
+        <div class="accordion shadow-sm mb-5" id="prayersAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#col1"
+              >
+                Señal de la Cruz y Credo
+              </button>
+            </h2>
+            <div
+              id="col1"
+              class="accordion-collapse collapse show"
+              data-bs-parent="#prayersAccordion"
+            >
+              <div class="accordion-body">
+                <strong>Señal de la Cruz:</strong> Por la señal de la Santa
+                Cruz, de nuestros enemigos, líbranos, Señor, Dios nuestro. En el
+                nombre del Padre y del Hijo y del Espíritu Santo. Amén.<br /><br />
+                <strong>El Credo:</strong> Creo en Dios, Padre todopoderoso,
+                Creador del cielo y de la tierra. Creo en Jesucristo, su único
+                Hijo, Nuestro Señor, que fue concebido por obra y gracia del
+                Espíritu Santo, nació de Santa María Virgen, padeció bajo el
+                poder de Poncio Pilato, fue crucificado, muerto y sepultado,
+                descendió a los infiernos, al tercer día resucitó de entre los
+                muertos, subió a los cielos y está sentado a la derecha de Dios,
+                Padre todopoderoso. Desde allí ha de venir a juzgar a vivos y
+                muertos. Creo en el Espíritu Santo, la santa Iglesia católica,
+                la comunión de los santos, el perdón de los pecados, la
+                resurrección de la carne y la vida eterna. Amén.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#col2"
+              >
+                Padre Nuestro, Ave María y Gloria
+              </button>
+            </h2>
+            <div
+              id="col2"
+              class="accordion-collapse collapse"
+              data-bs-parent="#prayersAccordion"
+            >
+              <div class="accordion-body">
+                <strong>Padre Nuestro:</strong> Padre nuestro, que estás en el
+                cielo, santificado sea tu Nombre; venga a nosotros tu reino;
+                hágase Señor tu voluntad así, en la tierra como en el cielo.
+                Danos hoy nuestro pan de cada día; perdona nuestras ofensas,
+                como también nosotros perdonamos a los que nos ofenden; no nos
+                dejes caer en tentación, y líbranos del mal. Amén.<br /><br />
+                <strong>Ave María:</strong> Dios te salve, María, llena eres de
+                gracia, el Señor es contigo. Bendita tú eres entre todas las
+                mujeres, y bendito es el fruto de tu vientre, Jesús. Santa
+                María, Madre de Dios, ruega por nosotros, pecadores, ahora y en
+                la hora de nuestra muerte. Amén.<br /><br />
+                <strong>Gloria:</strong> Gloria al Padre, y al Hijo, y al
+                Espíritu Santo. Como era en el principio, ahora y siempre, por
+                los siglos de los siglos. Amén.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#col3"
+              >
+                Las Tres Avemarías (Hija, Madre, Esposa)
+              </button>
+            </h2>
+            <div
+              id="col3"
+              class="accordion-collapse collapse"
+              data-bs-parent="#prayersAccordion"
+            >
+              <div class="accordion-body">
+                <strong>1. Hija de Dios Padre:</strong> Dios te salve, María,
+                santísima Hija de Dios Padre, Virgen purísima antes del parto.
+                En tus manos ponemos nuestra fe para que la ilumines. Dios te
+                salve, María...<br /><br />
+                <strong>2. Madre de Dios Hijo:</strong> Dios te salve, María,
+                santísima Madre de Dios Hijo, Virgen purísima en el parto. En
+                tus manos ponemos nuestra esperanza para que la alientes. Dios
+                te salve, María...<br /><br />
+                <strong>3. Esposa del Espíritu Santo:</strong> Dios te salve,
+                María, santísima Esposa de Dios Espíritu Santo, Virgen purísima
+                después del parto. En tus manos ponemos nuestra caridad para que
+                la inflames. Dios te salve, María...
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#col4"
+              >
+                La Salve y Letanías Completas
+              </button>
+            </h2>
+            <div
+              id="col4"
+              class="accordion-collapse collapse"
+              data-bs-parent="#prayersAccordion"
+            >
+              <div
+                class="accordion-body"
+                style="max-height: 300px; overflow-y: auto"
+              >
+                <strong>La Salve:</strong> Dios te salve, Reina y Madre de
+                misericordia, vida, dulzura y esperanza nuestra. Dios te salve.
+                A Ti clamamos los desterrados hijos de Eva, a Ti suspiramos,
+                gimiendo y llorando en este valle de lágrimas. Ea, pues, Señora
+                Abogada Nuestra, vuelve a nosotros tus ojos misericordiosos, y
+                después de este destierro, muéstranos a Jesús, fruto bendito de
+                tu vientre. Oh, clemente, oh piadosa, oh dulce Virgen María.
+                Ruega por nosotros, Santa Madre de Dios, para que seamos dignos
+                de alcanzar las promesas de Nuestro Señor Jesucristo. Amén.
+                <strong>Letanías Lauretanas:</strong> "Señor, ten piedad de
+                nosotros. Cristo, ten piedad de nosotros. Señor, ten piedad de
+                nosotros. Cristo, óyenos. Cristo, escúchanos. Dios, Padre
+                celestial, ten misericordia de nosotros. Dios, Hijo, Redentor
+                del mundo, ten misericordia de nosotros. Dios, Espíritu Santo,
+                ten misericordia de nosotros. Santísima Trinidad, un solo Dios,
+                ten misericordia de nosotros. Santa María, ruega por nosotros.
+                Santa Madre de Dios, ruega por nosotros. Madre de Cristo, Madre
+                de la Iglesia, Madre de la divina gracia, Madre purísima, Madre
+                castísima, Madre inmaculada, Madre amable, Madre admirable,
+                Madre del buen consejo, Madre del Creador, Madre del Salvador,
+                Madre de misericordia, ruega por nosotros. Virgen prudentísima,
+                Virgen digna de veneración, Virgen digna de alabanza, Virgen
+                poderosa, Virgen clemente, Virgen fiel, ruega por nosotros.
+                Espejo de justicia, Trono de la sabiduría, Causa de nuestra
+                alegría, Vaso espiritual, Vaso digno de honor, Vaso de insigne
+                devoción, Rosa mística, Torre de David, Torre de marfil, Casa de
+                oro, Arca de la Alianza, Puerta del cielo, Estrella de la
+                mañana, Salud de los enfermos, Refugio de los pecadores,
+                Consoladora de los afligidos, Auxilio de los cristianos, ruega
+                por nosotros. Reina de los Ángeles, Reina de los Patriarcas,
+                Reina de los Profetas, Reina de los Apóstoles, Reina de los
+                Mártires, Reina de los Confesores, Reina de las Vírgenes, Reina
+                de todos los Santos, Reina concebida sin pecado original, Reina
+                asunta a los Cielos, Reina del Santísimo Rosario, Reina de la
+                familia, Reina de la paz, ruega por nosotros. Cordero de Dios,
+                que quitas el pecado del mundo, perdónanos, Señor. Cordero de
+                Dios, que quitas el pecado del mundo, escúchanos, Señor. Cordero
+                de Dios, que quitas el pecado del mundo, ten misericordia de
+                nosotros. Ruega por nosotros, Santa Madre de Dios, para que
+                seamos dignos de alcanzar las promesas de Nuestro Señor
+                Jesucristo. Amén.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer Josbrevar 07 -->
+    <footer class="josbrevar-footer text-center mt-auto">
+      <div class="container">
+        <h4 class="fw-bold mb-3">
+          Creado, diseñado y desarrollado por Josbrevar 07
+        </h4>
+        <div class="social-icons mb-3 fs-3">
+          <a href="https://walink.co/341b8e" class="me-3" title="WhatsApp"
+            ><i class="fab fa-whatsapp"></i
+          ></a>
+          <a
+            href="https://www.instagram.com/josbrevar07/"
+            class="me-3"
+            title="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a
+            href="https://www.facebook.com/josue.brenesvargas"
+            class="me-3"
+            title="Facebook"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a
+            href="https://www.youtube.com/@josbrevar0773"
+            class="me-3"
+            title="YouTube"
+            ><i class="fab fa-youtube"></i
+          ></a>
+          <a
+            href="https://clases-de-manejo-personalizadas.com/"
+            title="Web / Sitio"
+            ><i class="fab fa-chrome"></i
+          ></a>
+        </div>
+        <small class="text-light opacity-75"
+          >© 2026 - Página web o aplicación creada, diseñada y desarrollada en
+          Santiago de Puriscal, San José, Costa Rica.</small
+        >
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // --- TEXTOS COMPLETOS PARA EL TTS ---
+      const prayers = {
+        senalCruz:
+          "Por la señal de la Santa Cruz, de nuestros enemigos, líbranos, Señor, Dios nuestro. En el nombre del Padre y del Hijo y del Espíritu Santo. Amén.",
+        credo:
+          "Creo en Dios, Padre todopoderoso, Creador del cielo y de la tierra. Creo en Jesucristo, su único Hijo, Nuestro Señor, que fue concebido por obra y gracia del Espíritu Santo, nació de Santa María Virgen, padeció bajo el poder de Poncio Pilato, fue crucificado, muerto y sepultado, descendió a los infiernos, al tercer día resucitó de entre los muertos, subió a los cielos y está sentado a la derecha de Dios, Padre todopoderoso. Desde allí ha de venir a juzgar a vivos y muertos. Creo en el Espíritu Santo, la santa Iglesia católica, la comunión de los santos, el perdón de los pecados, la resurrección de la carne y la vida eterna. Amén.",
+        padreNuestro:
+          "Padre nuestro, que estás en el cielo, santificado sea tu Nombre; venga a nosotros tu reino; hágase Señor, tu voluntad en la tierra como en el cielo. Danos hoy nuestro pan de cada día; perdona nuestras ofensas, como también nosotros perdonamos a los que nos ofenden; no nos dejes caer en la tentación, y líbranos del mal. Amén.",
+        aveMaria:
+          "Dios te salve, María, llena eres de gracia, el Señor es contigo. Bendita tú eres entre todas las mujeres, y bendito es el fruto de tu vientre, Jesús. Santa María, Madre de Dios, ruega por nosotros, pecadores, ahora y en la hora de nuestra muerte. Amén.",
+        gloria:
+          "Gloria al Padre, y al Hijo, y al Espíritu Santo. Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén.",
+        fatima:
+          "Oh Jesús mío, perdona nuestros pecados, líbranos del fuego del infierno, lleva al cielo a todas las almas, especialmente a las más necesitadas de tu misericordia.",
+
+        aveMariaFe:
+          "Dios te salve, María, santísima Hija de Dios Padre, Virgen purísima antes del parto. En tus manos ponemos nuestra fe para que la ilumines. Dios te salve, María, llena eres de gracia, el Señor es contigo. Bendita tú eres entre todas las mujeres, y bendito es el fruto de tu vientre, Jesús. Santa María, Madre de Dios, ruega por nosotros, pecadores, ahora y en la hora de nuestra muerte. Amén.",
+        aveMariaEsperanza:
+          "Dios te salve, María, santísima Madre de Dios Hijo, Virgen purísima en el parto. En tus manos ponemos nuestra esperanza para que la alientes. Dios te salve, María, llena eres de gracia, el Señor es contigo. Bendita tú eres entre todas las mujeres, y bendito es el fruto de tu vientre, Jesús. Santa María, Madre de Dios, ruega por nosotros, pecadores, ahora y en la hora de nuestra muerte. Amén.",
+        aveMariaCaridad:
+          "Dios te salve, María, santísima Esposa de Dios Espíritu Santo, Virgen purísima después del parto. En tus manos ponemos nuestra caridad para que la inflames. Dios te salve, María, llena eres de gracia, el Señor es contigo. Bendita tú eres entre todas las mujeres, y bendito es el fruto de tu vientre, Jesús. Santa María, Madre de Dios, ruega por nosotros, pecadores, ahora y en la hora de nuestra muerte. Amén.",
+
+        salveRegina:
+          "Dios te salve, Reina y Madre de misericordia, vida, dulzura y esperanza nuestra; Dios te salve. A Ti llamamos los desterrados hijos de Eva; a Ti suspiramos, gimiendo y llorando, en este valle de lágrimas. Ea, pues, Señora, abogada nuestra, vuelve a nosotros esos tus ojos misericordiosos; y después de este destierro muéstranos a Jesús, fruto bendito de tu vientre. ¡Oh clementísima, oh piadosa, oh dulce siempre Virgen María! Ruega por nosotros, Santa Madre de Dios, para que seamos dignos de alcanzar las promesas de Nuestro Señor Jesucristo. Amén.",
+        letanias:
+          "Señor, ten piedad de nosotros. Cristo, ten piedad de nosotros. Señor, ten piedad de nosotros. Cristo, óyenos. Cristo, escúchanos. Dios, Padre celestial, ten misericordia de nosotros. Dios, Hijo, Redentor del mundo, ten misericordia de nosotros. Dios, Espíritu Santo, ten misericordia de nosotros. Santísima Trinidad, un solo Dios, ten misericordia de nosotros. Santa María, ruega por nosotros. Santa Madre de Dios, ruega por nosotros. Madre de Cristo, Madre de la Iglesia, Madre de la divina gracia, Madre purísima, Madre castísima, Madre inmaculada, Madre amable, Madre admirable, Madre del buen consejo, Madre del Creador, Madre del Salvador, Madre de misericordia, ruega por nosotros. Virgen prudentísima, Virgen digna de veneración, Virgen digna de alabanza, Virgen poderosa, Virgen clemente, Virgen fiel, ruega por nosotros. Espejo de justicia, Trono de la sabiduría, Causa de nuestra alegría, Vaso espiritual, Vaso digno de honor, Vaso de insigne devoción, Rosa mística, Torre de David, Torre de marfil, Casa de oro, Arca de la Alianza, Puerta del cielo, Estrella de la mañana, Salud de los enfermos, Refugio de los pecadores, Consoladora de los afligidos, Auxilio de los cristianos, ruega por nosotros. Reina de los Ángeles, Reina de los Patriarcas, Reina de los Profetas, Reina de los Apóstoles, Reina de los Mártires, Reina de los Confesores, Reina de las Vírgenes, Reina de todos los Santos, Reina concebida sin pecado original, Reina asunta a los Cielos, Reina del Santísimo Rosario, Reina de la familia, Reina de la paz, ruega por nosotros. Cordero de Dios, que quitas el pecado del mundo, perdónanos, Señor. Cordero de Dios, que quitas el pecado del mundo, escúchanos, Señor. Cordero de Dios, que quitas el pecado del mundo, ten misericordia de nosotros. Ruega por nosotros, Santa Madre de Dios, para que seamos dignos de alcanzar las promesas de Nuestro Señor Jesucristo. Amén.",
+      };
+
+      const mysteriesConfig = {
+        lunes: {
+          tipo: "Gozosos",
+          misterios: [
+            "La Encarnación del hijo de Dios",
+            "La Visitación de la Virgen María a su prima Isabel",
+            "El Nacimiento de Jesús en Belén",
+            "La Presentación del niño Jesús en el Templo",
+            "El Niño perdido y hallado en el Templo",
+          ],
+        },
+        martes: {
+          tipo: "Dolorosos",
+          misterios: [
+            "La Agonía de Jesús en el Huerto de los Olivos",
+            "La Flagelación de Jesús",
+            "La Coronación de espinas de espinas de Jesús",
+            "Jesús con la Cruz a cuestas",
+            "La Crucifixión y muerte de Jesús",
+          ],
+        },
+        miercoles: {
+          tipo: "Gloriosos",
+          misterios: [
+            "La Resurrección de Jesús",
+            "La Ascensión de Jesús a los cielos",
+            "La Venida del Espíritu Santo sobre los apóstoles",
+            "La Asunción de María a los cielos",
+            "La Coronación de María como reina.",
+          ],
+        },
+        jueves: {
+          tipo: "Luminosos",
+          misterios: [
+            "El Bautismo de Jesús en el río Jordán",
+            "Las bodas de Caná y Jesús hace su primer milagro público",
+            "El anuncio del Reino de Dios",
+            "La Transfiguración de Jesús en el Monte",
+            "La Institución de la Eucaristía",
+          ],
+        },
+        viernes: {
+          tipo: "Dolorosos",
+          misterios: [
+            "La Agonía de Jesús en el Huerto de los Olivos",
+            "La Flagelación de Jesús",
+            "La Coronación de espinas de espinas de Jesús",
+            "Jesús con la Cruz a cuestas",
+            "La Crucifixión y muerte de Jesús",
+          ],
+        },
+        sabado: {
+          tipo: "Gozosos",
+          misterios: [
+            "La Encarnación del hijo de Dios",
+            "La Visitación de la Virgen María a su prima Isabel",
+            "El Nacimiento de Jesús en Belén",
+            "La Presentación del niño Jesús en el Templo",
+            "El Niño perdido y hallado en el Templo",
+          ],
+        },
+        domingo: {
+          tipo: "Gloriosos",
+          misterios: [
+            "La Resurrección de Jesús",
+            "La Ascensión de Jesús a los cielos",
+            "La Venida del Espíritu Santo sobre los apóstoles",
+            "La Asunción de María a los cielos",
+            "La Coronación de María como reina.",
+          ],
+        },
+      };
+
+      // --- GESTIÓN DE VOCES HUMANAS (TTS) ---
+      let availableVoices = [];
+      const voiceSelect = document.getElementById("voiceSelect");
+
+      function populateVoices() {
+        availableVoices = speechSynthesis.getVoices();
+        // Filtramos solo las voces en español
+        const esVoices = availableVoices.filter((v) => v.lang.startsWith("es"));
+
+        voiceSelect.innerHTML = "";
+
+        if (esVoices.length === 0) {
+          voiceSelect.innerHTML =
+            '<option value="">Cargando voces o voz predeterminada...</option>';
+          return;
+        }
+
+        esVoices.forEach((voice) => {
+          const option = document.createElement("option");
+          option.value = voice.name;
+
+          // Le ponemos estrellita a las voces "Premium" o de red (Google, Apple, Microsoft naturales)
+          let label = `${voice.name} (${voice.lang})`;
+          if (
+            voice.name.includes("Google") ||
+            voice.name.includes("Premium") ||
+            voice.name.includes("Natural") ||
+            voice.name.includes("Siri")
+          ) {
+            label = "⭐ " + label + " (Alta Calidad)";
+          }
+
+          option.textContent = label;
+
+          // Seleccionar por defecto la mejor voz posible (Ej: Google español)
+          if (voice.name.includes("Google español") || voice.default) {
+            option.selected = true;
+          }
+
+          voiceSelect.appendChild(option);
+        });
+      }
+
+      // Los navegadores cargan las voces de forma asíncrona
+      speechSynthesis.onvoiceschanged = populateVoices;
+      populateVoices();
+
+      // --- LÓGICA DEL GENERADOR VISUAL (SVG) ---
+      const svg = document.getElementById("rosary-svg");
+      let beadsMap = [];
+
+      function initRosaryVisual() {
+        const chainLoop = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "circle",
+        );
+        chainLoop.setAttribute("cx", 200);
+        chainLoop.setAttribute("cy", 170);
+        chainLoop.setAttribute("r", 130);
+        chainLoop.setAttribute("fill", "none");
+        chainLoop.setAttribute("stroke", "#ccc");
+        chainLoop.setAttribute("stroke-width", "2");
+        svg.appendChild(chainLoop);
+
+        const chainTail = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "line",
+        );
+        chainTail.setAttribute("x1", 200);
+        chainTail.setAttribute("y1", 300);
+        chainTail.setAttribute("x2", 200);
+        chainTail.setAttribute("y2", 500);
+        chainTail.setAttribute("stroke", "#ccc");
+        chainTail.setAttribute("stroke-width", "2");
+        svg.appendChild(chainTail);
+
+        function addElement(type, cx, cy, rx, ry = null) {
+          const el = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            type === "rect" ? "rect" : ry ? "ellipse" : "circle",
+          );
+          if (type === "rect") {
+            el.setAttribute("x", cx - rx);
+            el.setAttribute("y", cy - ry);
+            el.setAttribute("width", rx * 2);
+            el.setAttribute("height", ry * 2);
+          } else {
+            el.setAttribute("cx", cx);
+            el.setAttribute("cy", cy);
+            if (ry) {
+              el.setAttribute("rx", rx);
+              el.setAttribute("ry", ry);
+            } else {
+              el.setAttribute("r", rx);
+            }
+          }
+          el.setAttribute("class", `bead bead-pending`);
+          svg.appendChild(el);
+          beadsMap.push(el);
+        }
+
+        // 0: Cruz
+        addElement("rect", 200, 520, 15, 25);
+
+        // 1 a 5: Colita
+        addElement("circle", 200, 470, 8);
+        beadsMap[1].classList.add("bead-large");
+        addElement("circle", 200, 430, 5);
+        addElement("circle", 200, 400, 5);
+        addElement("circle", 200, 370, 5);
+        addElement("circle", 200, 330, 8);
+        beadsMap[5].classList.add("bead-large");
+
+        // 6: Medalla
+        addElement("ellipse", 200, 290, 18, 22);
+        beadsMap[6].classList.add("bead-large");
+
+        // 7 al 60: Loop
+        const totalLoopBeads = 54;
+        const startAngle = (100 * Math.PI) / 180;
+        const endAngle = (440 * Math.PI) / 180;
+        const angleStep = (endAngle - startAngle) / (totalLoopBeads - 1);
+
+        const loopPattern = [];
+        for (let m = 0; m < 4; m++) {
+          for (let i = 0; i < 10; i++) loopPattern.push("small");
+          loopPattern.push("large");
+        }
+        for (let i = 0; i < 10; i++) loopPattern.push("small");
+
+        for (let i = 0; i < totalLoopBeads; i++) {
+          let angle = startAngle + i * angleStep;
+          let x = 200 + 130 * Math.cos(angle);
+          let y = 170 + 130 * Math.sin(angle);
+          let isLarge = loopPattern[i] === "large";
+
+          addElement("circle", x, y, isLarge ? 8 : 5);
+          if (isLarge)
+            beadsMap[beadsMap.length - 1].classList.add("bead-large");
+        }
+      }
+      initRosaryVisual();
+
+      // --- LÓGICA GENERAL ---
+      const day = new Date()
+        .toLocaleDateString("es-CR", { weekday: "long" })
+        .toLowerCase();
+      const normalizedDay = day
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+      const configHoy =
+        mysteriesConfig[normalizedDay] || mysteriesConfig["lunes"];
+      document.getElementById("status").innerText =
+        `Hoy contemplamos los Misterios ${configHoy.tipo}`;
+
+      let isPlaying = false;
+      let wakeLock = null;
+
+      async function requestWakeLock() {
+        if ("wakeLock" in navigator) {
+          try {
+            wakeLock = await navigator.wakeLock.request("screen");
+          } catch (err) {
+            console.error(`${err.name}, ${err.message}`);
+          }
+        }
+      }
+
+      async function releaseWakeLock() {
+        if (wakeLock !== null) {
+          try {
+            await wakeLock.release();
+            wakeLock = null;
+          } catch (err) {
+            console.error(`${err.name}, ${err.message}`);
+          }
+        }
+      }
+
+      function updateVisuals(beadIndex) {
+        beadsMap.forEach((bead, i) => {
+          bead.classList.remove("bead-active", "bead-done");
+          if (i !== 0 && i < beadIndex && beadIndex >= 6) {
+            bead.classList.add("bead-done");
+          } else if (beadIndex < 6 && beadIndex !== 0) {
+            if (i >= 6) bead.classList.add("bead-done");
+            if (i > beadIndex && i < 6) bead.classList.add("bead-done");
+          }
+          if (i === beadIndex) {
+            bead.classList.add("bead-active");
+          }
+        });
+      }
+
+      function speak(text, title = "", counterText = "", beadIndex = 0) {
+        return new Promise((resolve) => {
+          if (!isPlaying) {
+            resolve();
+            return;
+          }
+
+          updateVisuals(beadIndex);
+          const badge = document.getElementById("prayer-badge");
+          if (title) {
+            badge.innerText = title;
+            badge.style.display = "inline-block";
+          } else {
+            badge.style.display = "none";
+          }
+
+          document.getElementById("current-prayer-text").innerText = text;
+          document.getElementById("prayer-counter").innerText = counterText;
+
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.lang = "es-ES";
+          utterance.rate = 0.85;
+
+          // Aplicar la voz seleccionada por el usuario
+          const selectedVoiceName = voiceSelect.value;
+          if (selectedVoiceName) {
+            const chosenVoice = availableVoices.find(
+              (v) => v.name === selectedVoiceName,
+            );
+            if (chosenVoice) utterance.voice = chosenVoice;
+          }
+
+          utterance.onend = () => resolve();
+          utterance.onerror = () => resolve();
+          speechSynthesis.speak(utterance);
+        });
+      }
+
+      function stopRosary() {
+        isPlaying = false;
+        speechSynthesis.cancel();
+        releaseWakeLock();
+        document.getElementById("startBtn").style.display = "inline-block";
+        document.getElementById("stopBtn").style.display = "none";
+        document.getElementById("voiceSelectorContainer").style.display =
+          "block"; // Volver a mostrar selector
+        document.getElementById("prayer-badge").style.display = "none";
+        document.getElementById("current-prayer-text").innerText =
+          "Rosario detenido.";
+        document.getElementById("prayer-counter").innerText = "";
+        beadsMap.forEach((b) => b.classList.remove("bead-active", "bead-done"));
+      }
+
+      async function startRosary() {
+        isPlaying = true;
+        document.getElementById("startBtn").style.display = "none";
+        document.getElementById("voiceSelectorContainer").style.display =
+          "none"; // Ocultar selector durante el rezo
+        document.getElementById("stopBtn").style.display = "inline-block";
+
+        await requestWakeLock();
+
+        // 1. LA CRUZ (0)
+        await speak(prayers.senalCruz, "Señal de la Cruz", "Iniciando...", 0);
+        if (!isPlaying) return;
+        await speak(prayers.credo, "El Credo", "Profesión de fe", 0);
+
+        if (!isPlaying) return;
+        await speak(
+          `Hoy rezaremos los Misterios ${configHoy.tipo}.`,
+          `Misterios ${configHoy.tipo}`,
+          "Preparación",
+          6,
+        );
+
+        // 2. MISTERIOS (6 en adelante)
+        let beadPointer = 6;
+        const ordinales = ["Primer", "Segundo", "Tercer", "Cuarto", "Quinto"];
+
+        for (let m = 0; m < 5; m++) {
+          if (!isPlaying) break;
+          let tituloMisterio = `${ordinales[m]} Misterio ${configHoy.tipo}`;
+
+          await speak(
+            `${tituloMisterio}: ${configHoy.misterios[m]}`,
+            tituloMisterio,
+            "Contemplación",
+            beadPointer,
+          );
+          await speak(
+            prayers.padreNuestro,
+            "Padre Nuestro",
+            "Inicio del misterio",
+            beadPointer,
+          );
+          beadPointer++;
+
+          for (let i = 0; i < 10; i++) {
+            if (!isPlaying) break;
+            await speak(
+              prayers.aveMaria,
+              "Ave María",
+              `Oración ${i + 1} de 10`,
+              beadPointer,
+            );
+            beadPointer++;
+          }
+
+          if (!isPlaying) break;
+          await speak(
+            prayers.gloria,
+            "Gloria",
+            "Al finalizar la decena",
+            beadPointer - 1,
+          );
+          await speak(
+            prayers.fatima,
+            "Oración de Fátima",
+            "Jaculatoria",
+            beadPointer - 1,
+          );
+        }
+
+        if (isPlaying) {
+          // 3. BAJANDO POR LA COLITA
+          await speak(
+            prayers.padreNuestro,
+            "Padre Nuestro",
+            "Por las intenciones del Santo Padre",
+            5,
+          );
+          await speak(
+            prayers.aveMariaFe,
+            "María, Hija de Dios Padre",
+            "Para que ilumine nuestra Fe",
+            4,
+          );
+          await speak(
+            prayers.aveMariaEsperanza,
+            "María, Madre de Dios Hijo",
+            "Para que aliente nuestra Esperanza",
+            3,
+          );
+          await speak(
+            prayers.aveMariaCaridad,
+            "María, Esposa del Espíritu Santo",
+            "Para que inflame nuestra Caridad",
+            2,
+          );
+          await speak(
+            prayers.salveRegina,
+            "La Salve",
+            "Oración a nuestra Reina",
+            1,
+          );
+          await speak(
+            prayers.letanias,
+            "Letanías Lauretanas",
+            "Ruego final a la Virgen María",
+            1,
+          );
+          await speak(
+            "En el nombre del Padre, del Hijo, y del Espíritu Santo. Amén.",
+            "Final",
+            "Podemos ir en paz",
+            0,
+          );
+
+          stopRosary();
+          document.getElementById("prayer-badge").style.display = "none";
+          document.getElementById("current-prayer-text").innerHTML =
+            "<strong>Rosario completado. Amén.</strong>";
+        }
+      }
+    </script>
+  </body>
+</html>
